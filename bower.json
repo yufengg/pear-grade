@@ -1,0 +1,25 @@
+{
+  "name": "PearGrading",
+  "version": "0.0.1",
+  "authors": [
+    "yufengg <g.yufeng@gmail.com>"
+  ],
+  "description": "App that implements a peer grading system",
+  "main": "pear-grade-app.html",
+  "keywords": [
+    "polymer",
+    "pear-grade-app"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-scaffold": "Polymer/core-scaffold#~0.5.2"
+  }
+}
