@@ -1,14 +1,62 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/font-roboto/roboto.html">
 
+<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+<link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/slide-from-right.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/cross-fade.html">
+
+<link rel="import" href="bower_components/paper-item/paper-item.html">
+<link rel="import" href="bower_components/core-icon/core-icon.html">
+
 <polymer-element name="pear-grade-app">
   <template>
-    <link rel="stylesheet" href="pear-grade-styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <core-scaffold>
+      <nav>
+        <core-toolbar><span>Pear Grade</span></core-toolbar>
+        <core-menu id="menu" valueattr="hash" selected="{{route}}">
+          <template repeat="{{page in pages}}">
+            <paper-item hash="{{page.hash}}" noink on-click="{{menuClicked}}">
+              <core-icon icon="label-outline"></core-icon>
+              <a href="#{{page.hash}}">{{page.name}}</a>
+            </paper-item>
+          </template>
+        </core-menu>
+      </nav>
+      <core-toolbar tool flex>
+        <!-- flex spaces this element and jusifies the icons to the right-side -->
+        <div flex>Application</div>
+        <core-icon-button icon="refresh"></core-icon-button>
+        <core-icon-button icon="add"></core-icon-button>
+      </core-toolbar>
+      <div layout horizontal center-center fit>
+        <core-animated-pages valueattr="hash" selected="{{route}}"
+                             transitions="cross-fade">
+          <template repeat="{{page in pages}}">
+            <section hash="{{page.hash}}" layout vertical center-center>
+              <div>{{page.name}}</div>
+              <div>{{page.name}}</div>
+            </section>
+          </template>
+        </core-animated-pages>
+      </div>
+    </core-scaffold>
   </template>
   <script>
     Polymer({
       ready: function() {
         console.log('pear-grade-app loaded');
+      },
+      pages:
+        [
+          {name: 'Triple', hash: 'yi'},
+          {name: 'larry', hash: 'er'},
+          {name: 'module', hash: 'san'}
+        ],
+      menuClicked: function(event, blank, elem) {
+        console.log(arguments);
+        this.route = elem.getAttribute('hash');
       }
     });
   </script>
